@@ -3,7 +3,7 @@ package ru.lenabobr;
 
 public class ArrayApp {
 public static void main(String[] args){
-    MyArrayList arrayList = new MyArrayList(10);
+    MyArrayList<Integer> arrayList = new MyArrayList<Integer>(10);
     arrayList.addElement(1);
     arrayList.addElement(3);
     arrayList.addElement(6);
@@ -11,7 +11,8 @@ public static void main(String[] args){
     arrayList.addElement(54);
 
     //arrayList.addElementByIndex(8, 3);
-arrayList.deleteElement(3);
+//arrayList.deleteElement(3);
+    arrayList.sortArray();
     arrayList.printArr();
 
 }

@@ -1,5 +1,4 @@
 package  ru.lenabobr;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -48,10 +47,35 @@ public class MyArrayList<T>{
                     }
         currentSize=0;
     }
-    public void sortArray(){
-
+    public void sortArray (){
+     quickSort(array, 0, currentSize-1);
     }
-    public void changeElement(int index){}
+    private void quickSort(T[] array, int start, int end){
+            if (start >=end) return;
+            int pivot = partition(array, 0, end);
+            quickSort(array, start, pivot-1);
+            quickSort(array, pivot+1, end);
+        }
+        private  int partition (T [] array, int start, int end ){
+            T value = array[end];
+            int position = start;
+            for (int i = start;  i<end; i++){
+                if ((((Comparable)array[i]).compareTo(value)== 1)) {
+                    continue;
+                }
+                T temp = array[i];
+                array[i] = array[position];
+                array[position] = temp;
+                position++;
+            }
+            array[end]= array[position];
+            array[position] = value;
+            return position;
+        }
+
+    public void changeElement(T elem, int index){
+        array[index]=elem;
+    }
 
     private void growSize(int newSize){
         if (array.length - newSize<3){
