@@ -3,24 +3,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class MyArrayList {
-    private int[] array;
+public class MyArrayList<T>{
+    private T [] array;
     private int currentSize;
 
     public MyArrayList(int maxSize){
-        array = new int [maxSize];
+        array = (T[]) new Object [maxSize];
         currentSize =0;
     }
-    public void addElement(int elem){
+    public void addElement(T elem){
         array[currentSize] = elem;
         currentSize++;
     }
-    public void addElementByIndex(int elem, int index){
+    public void addElementByIndex(T elem, int index){
         growSize(currentSize+1);
-        for (int i=currentSize; i>=index; i--){
+        for (int i=currentSize; i>index; i--){
             array[i]=array[i-1];
         }
-         array[index-1]=elem;
+         array[index]=elem;
         currentSize++;
 
     }
@@ -29,23 +29,33 @@ public class MyArrayList {
         return currentSize;
     }
 
-    public int getElementByIndex(int index){
-        return array[index];
+    public T getElementByIndex(int index)  {
+        if (index <= currentSize)
+            return array[index];
+        else return null;
     }
+
     public void deleteElement(int index){
-        for (int i=index; i<currentSize; i++){
+        for (int i=index+1; i<currentSize; i++){
             array[i-1]=array[i];
         }
-        array[currentSize-1]=0;
+        array[currentSize-1]=null;
         currentSize--;
     }
-    public void cleanAll(){}
-    public void sortArray(){}
+    public void cleanAll(){
+        for(int i = 0; i < currentSize; i++) {
+            array[i] = null;
+                    }
+        currentSize=0;
+    }
+    public void sortArray(){
+
+    }
     public void changeElement(int index){}
 
     private void growSize(int newSize){
         if (array.length - newSize<3){
-            int[] newAr= new int[array.length*2];
+            T [] newAr= (T[]) new Object [array.length*2];
             newAr = Arrays.copyOf(array, array.length);
             array= newAr;
             newAr = null;

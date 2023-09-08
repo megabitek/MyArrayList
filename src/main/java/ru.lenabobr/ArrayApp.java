@@ -10,9 +10,8 @@ public static void main(String[] args){
     arrayList.addElement(7);
     arrayList.addElement(54);
 
-    arrayList.addElementByIndex(8, 3);
-  //  arrayList.printArr();
-    arrayList.deleteElement(3);
+    //arrayList.addElementByIndex(8, 3);
+arrayList.deleteElement(3);
     arrayList.printArr();
 
 }
