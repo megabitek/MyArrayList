@@ -3,13 +3,14 @@ package ru.lena.bobr;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import ru.lenabobr.MyArrayList;
 
 import java.util.Comparator;
 
 public class MyArrayListTestInt {
 
-    MyArrayList arrayList = new MyArrayList<Integer>(10);
+    MyArrayList arrayList = new MyArrayList<Integer>();
 
 
     @Before
@@ -17,8 +18,15 @@ public class MyArrayListTestInt {
     //    MyArrayList arrayList = new MyArrayList(10);
         arrayList.addElement(3);
         arrayList.addElement(2);
-        arrayList.addElement(2);
+        arrayList.addElement(5);
         arrayList.addElement(8);
+    }
+
+    @Test
+    public void negativeCapacity(){
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        MyArrayList<Integer> arrayList1= new MyArrayList<>(-10);       });
+        Assertions.assertEquals("Illegal Capacity: -10", thrown.getMessage());
     }
     @Test
     public void getSize(){
@@ -62,8 +70,8 @@ public class MyArrayListTestInt {
         });
         arrayList.sortArray();
         Assert.assertEquals(2, arrayList.getElementByIndex(0));
-        Assert.assertEquals(2, arrayList.getElementByIndex(1));
-        Assert.assertEquals(3, arrayList.getElementByIndex(2));
+        Assert.assertEquals(3, arrayList.getElementByIndex(1));
+        Assert.assertEquals(5, arrayList.getElementByIndex(2));
         Assert.assertEquals(8, arrayList.getElementByIndex(3));
     }
 }

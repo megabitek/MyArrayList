@@ -9,7 +9,7 @@ import java.util.Comparator;
 
 public class MyArrayListTestStr {
 
-    MyArrayList arrayList = new MyArrayList<String>(10);
+    MyArrayList arrayList = new MyArrayList<String>();
 
 
     @Before

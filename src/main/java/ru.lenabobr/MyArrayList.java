@@ -4,18 +4,46 @@ import java.util.Comparator;
 
 
 public class MyArrayList<T>{
+    /**
+     * The array buffer into which the elements of the ArrayList are stored.
+     * The capacity of the ArrayList is the length of this array buffer.
+     * Any empty ArrayList with elementData == DEFAULTSIZE_EMPTY will be expanded to currentSize when the first element is added*/
     private T [] array;
+
+    /**
+     * The size of the ArrayList (the number of elements it contains).*/
     private int currentSize;
 
-    private  Comparator<T> comparator;
+    private final int DEFAULTSIZE_EMPTY=10;
 
+    private  Comparator<T> comparator;
+/**
+ *  This method allows you to install a comparator of a given type. it is needed when sorting an array is required
+ *
+ *  Type parameters:
+ * <T> – the type of elements in this list*/
     public void setComparator(Comparator<T> comparator) {
         this.comparator = comparator;
     }
+/**
+ * */
 
-    public MyArrayList(int maxSize){
-        array = (T[]) new Object [maxSize];
+/**
+ * Create new ArrayList with default capacity*/
+    public MyArrayList(){
+        array = (T[]) new Object [DEFAULTSIZE_EMPTY];
         currentSize =0;
+    }
+/**
+ * Create new ArrayList with user specified capacity
+ * Throws:
+ IllegalArgumentException – if the specified initial capacity is negative*/
+    public MyArrayList(int capacity){
+        if (capacity>0){
+        array = (T[]) new Object [capacity];
+        currentSize =0;}
+        else throw new IllegalArgumentException("Illegal Capacity: "+
+                capacity);
     }
     public void addElement(T elem){
         array[currentSize] = elem;
@@ -54,10 +82,13 @@ public class MyArrayList<T>{
                     }
         currentSize=0;
     }
+    /**
+     * this method use for array sorting */
     public void sortArray (){
 
      quickSort(array, 0, currentSize-1);
     }
+
     private void quickSort(T[] array, int start, int end){
             if (start >=end) return;
             int pivot = partition(array, 0, end, comparator);
