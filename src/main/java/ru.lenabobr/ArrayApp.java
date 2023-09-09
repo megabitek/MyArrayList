@@ -1,6 +1,8 @@
 package ru.lenabobr;
 
 
+import java.util.Comparator;
+
 public class ArrayApp {
 public static void main(String[] args){
     MyArrayList<Integer> arrayList = new MyArrayList<Integer>(10);
@@ -12,6 +14,12 @@ public static void main(String[] args){
 
     //arrayList.addElementByIndex(8, 3);
 //arrayList.deleteElement(3);
+    arrayList.setComparator(new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1.compareTo(o2);
+        }
+    });
     arrayList.sortArray();
     arrayList.printArr();
 

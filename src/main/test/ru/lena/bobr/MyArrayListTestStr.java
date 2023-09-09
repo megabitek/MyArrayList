@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.lenabobr.MyArrayList;
 
+import java.util.Comparator;
+
 public class MyArrayListTestStr {
 
     MyArrayList arrayList = new MyArrayList<String>(10);
@@ -14,8 +16,8 @@ public class MyArrayListTestStr {
     public void init() {
     //    MyArrayList arrayList = new MyArrayList(10);
         arrayList.addElement("Tom");
-        arrayList.addElement("John");
         arrayList.addElement("Jane");
+        arrayList.addElement("John");
         arrayList.addElement("Pete");
     }
     @Test
@@ -48,6 +50,18 @@ public void addElementByIndex(){
 
     @Test
     public void sortArray(){
+        arrayList.setComparator(new Comparator<String>() {
+            @Override
+            public int compare(String str1, String str2) {
+                 if  (str1.compareTo(str2)==0)
+                    return 0;
+                            else if (str1.compareTo(str2)>0)
+                         return 1;
+                                 else
+                return -1;
+        }}
+        );
+
         arrayList.sortArray();
         Assert.assertEquals("Jane", arrayList.getElementByIndex(0));
         Assert.assertEquals("John", arrayList.getElementByIndex(1));

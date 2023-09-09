@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import ru.lenabobr.MyArrayList;
 
+import java.util.Comparator;
+
 public class MyArrayListTestInt {
 
     MyArrayList arrayList = new MyArrayList<Integer>(10);
@@ -52,6 +54,12 @@ public class MyArrayListTestInt {
 
     @Test
     public void sortArray(){
+        arrayList.setComparator(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.compareTo(o2);
+            }
+        });
         arrayList.sortArray();
         Assert.assertEquals(2, arrayList.getElementByIndex(0));
         Assert.assertEquals(2, arrayList.getElementByIndex(1));

@@ -1,10 +1,17 @@
 package  ru.lenabobr;
 import java.util.Arrays;
+import java.util.Comparator;
 
 
 public class MyArrayList<T>{
     private T [] array;
     private int currentSize;
+
+    private  Comparator<T> comparator;
+
+    public void setComparator(Comparator<T> comparator) {
+        this.comparator = comparator;
+    }
 
     public MyArrayList(int maxSize){
         array = (T[]) new Object [maxSize];
@@ -48,21 +55,20 @@ public class MyArrayList<T>{
         currentSize=0;
     }
     public void sortArray (){
+
      quickSort(array, 0, currentSize-1);
     }
     private void quickSort(T[] array, int start, int end){
             if (start >=end) return;
-            int pivot = partition(array, 0, end);
-            quickSort(array, start, pivot-1);
+            int pivot = partition(array, 0, end, comparator);
+            quickSort(array, start, pivot-1 );
             quickSort(array, pivot+1, end);
         }
-        private  int partition (T [] array, int start, int end ){
+        private  int partition (T [] array, int start, int end, Comparator <T>  comparator ){
             T value = array[end];
             int position = start;
             for (int i = start;  i<end; i++){
-                if ((((Comparable)array[i]).compareTo(value)== 1)) {
-                    continue;
-                }
+               if (comparator.compare(array[i], value) == 1) continue;
                 T temp = array[i];
                 array[i] = array[position];
                 array[position] = temp;
