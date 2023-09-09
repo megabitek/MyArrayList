@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Assertions;
 import ru.lenabobr.MyArrayList;
 
 import java.util.Comparator;
-
-public class MyArrayListTestInt {
+/**
+ * Test for method of my array list implementation **/
+public class MyArrayListTest {
 
     MyArrayList arrayList = new MyArrayList<Integer>();
 
 
     @Before
     public void init() {
-        //    MyArrayList arrayList = new MyArrayList(10);
         arrayList.addElement(3);
         arrayList.addElement(2);
         arrayList.addElement(5);
@@ -32,7 +32,7 @@ public class MyArrayListTestInt {
 
     @Test
     public void getSize() {
-        // MyArrayList arrayList = new MyArrayList(10);
+
         Assert.assertEquals(4, arrayList.getSize());
     }
 

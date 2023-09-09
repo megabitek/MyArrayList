@@ -3,7 +3,8 @@ package ru.lenabobr;
 import java.util.Arrays;
 import java.util.Comparator;
 
-/** My implementation of an array list and methods for working with it*/
+/** My implementation of an array list and methods for working with it.
+ * @param <T> - type of array list elements */
 public class MyArrayList<T> {
     /**
      * The array buffer into which the elements of the ArrayList are stored.
