@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Assertions;
 import ru.lenabobr.MyArrayList;
 
 import java.util.Comparator;
+
 /**
- * Test for method of my array list implementation **/
+ * Test for method of my array list implementation
+ **/
 public class MyArrayListTest {
 
     MyArrayList arrayList = new MyArrayList<Integer>();
@@ -52,22 +54,29 @@ public class MyArrayListTest {
     }
 
 
-    @Test
-    public void addElementByIndex() {
-        arrayList.addElementByIndex(2, 2);
-        Assert.assertEquals(5, arrayList.getSize());
-        Assert.assertEquals(2, arrayList.getElementByIndex(2));
-    }
-
-    @Test
+   @Test
     public void deleteElement() {
-        arrayList.deleteElement(3);
-        Assert.assertEquals(3, arrayList.getSize());
+        for (int i = 0; i < 10000; i++) {
+            arrayList.addElementByIndex(new Integer(1), 0);
+        }
+        Assert.assertEquals(10004, arrayList.getSize());
+
+        while (arrayList.getSize() > 0)
+            arrayList.deleteElement(0);
+
+        Assert.assertEquals(0, arrayList.getSize());
     }
 
     @Test
     public void changeElement() {
-        Assert.assertEquals(5, arrayList.getElementByIndex(2));
+        for (int i = 0; i < 10000; i++) {
+            arrayList.addElementByIndex(new Integer(1), 0);
+        }
+        for (int i = 0; i < 10000; i++) {
+            arrayList.changeElement(2, i);
+        }
+
+        Assert.assertEquals(2, arrayList.getElementByIndex(2));
         arrayList.changeElement(56, 2);
         Assert.assertEquals(56, arrayList.getElementByIndex(2));
     }
@@ -88,7 +97,7 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void sortArrayString(){
+    public void sortArrayString() {
 
         MyArrayList arrayListStr = new MyArrayList<String>();
         arrayListStr.addElement("Tom");
@@ -96,15 +105,16 @@ public class MyArrayListTest {
         arrayListStr.addElement("John");
         arrayListStr.addElement("Pete");
         arrayListStr.setComparator(new Comparator<String>() {
-            @Override
-            public int compare(String str1, String str2) {
-                if  (str1.compareTo(str2)==0)
-                    return 0;
-                else if (str1.compareTo(str2)>0)
-                    return 1;
-                else
-                    return -1;
-            }}
+                                       @Override
+                                       public int compare(String str1, String str2) {
+                                           if (str1.compareTo(str2) == 0)
+                                               return 0;
+                                           else if (str1.compareTo(str2) > 0)
+                                               return 1;
+                                           else
+                                               return -1;
+                                       }
+                                   }
         );
 
         arrayListStr.sortArray();
@@ -115,7 +125,17 @@ public class MyArrayListTest {
     }
 
     @Test
-    public void cleanAll(){
+    public void cycleTest() {
+        for (int i = 0; i < 10000; i++) {
+            arrayList.addElementByIndex(new Integer(1), 0);
+        }
+        Assert.assertEquals(arrayList.getSize(), 10004);
+    }
+
+    ;
+
+    @Test
+    public void cleanAll() {
         arrayList.cleanAll();
         Assert.assertEquals(0, arrayList.getSize());
     }

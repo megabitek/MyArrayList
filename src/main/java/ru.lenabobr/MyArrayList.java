@@ -184,7 +184,7 @@ public class MyArrayList<T> {
     private void growSize(int newSize) {
         if (array.length - newSize < SIZE_CAPACITY_DIFF) {
             T[] newAr = (T[]) new Object[array.length * CAPACITY_DECREASE_PARAMETR];
-            newAr = Arrays.copyOf(array, array.length);
+            System.arraycopy(array,0, newAr, 0, array.length);
             array = newAr;
             newAr = null;
         }
